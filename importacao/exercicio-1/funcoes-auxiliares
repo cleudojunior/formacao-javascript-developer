@@ -1,0 +1,19 @@
+const media = [4, 6, 8];
+let i = 0
+
+function gets() {
+    const valorMedia = media[i];
+    i++;
+    if (valorMedia < 5) {
+        return 'Reprovado'
+    } else if (valorMedia <= 6) {
+        return 'Recuperação'
+    } else {
+        return 'Aprovado'
+    }
+}
+
+function print (texto) {
+    console.log(texto)
+}
+module.exports = {gets, print};
