@@ -18,6 +18,17 @@ li {
     list-style: none;
 }
 
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -30%);
+    transition: 500ms ease-in-out;
+}
+
 .pokemonIndividual {
     position: relative;
     width: 90vw;
@@ -60,6 +71,7 @@ li {
     background-image: url('/imgs/seta-1.svg');
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 
 .idPoke {
@@ -89,11 +101,11 @@ li {
 
 .photoIndividual {
     position: absolute;
-    top: 1rem;
+    top: .3rem;
     left: 50%;
     transform: translateX(-50%);
     height: 200px;
-    max-width: 70%;
+    max-width: 40%;
 }
 
 .next {
@@ -296,5 +308,9 @@ li {
     }
     .pokemonIndividual {
         width: 90%;
+    }
+
+    .container {
+        width: 40%;
     }
 }

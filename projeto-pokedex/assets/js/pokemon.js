@@ -1,17 +1,24 @@
-window.addEventListener('DOMContentLoaded', (e) => {
-    let content = document.querySelector('.content')
-    let back = null
-    let individual = null
+let content = document.querySelector('.container')
 
-    let pokemon = document.querySelector('.pokemon')
-    pokemon.addEventListener('click', apareceInformacao)
+
+    async function pokemonnn() {
+    let pokemon = await document.querySelectorAll('.pokemon')
+    pokemon.forEach(p => {
+        p.addEventListener('click', apareceInformacao)
+    })
+    
+}
+
+
+
+    setTimeout(pokemonnn, 1000)
   
     // Resto do código...
     async function apareceInformacao(e) {
         const pokemonName = e.currentTarget.childNodes[3].innerHTML
             const poke = await pokeApi.getPokemon(pokemonName)
             console.log(poke)
-            let htmlNew = `
+            htmlNew = `
         <div class="pokemonIndividual ${poke.types[0].type.name}">
             <div class="background-overlay"></div>
             <div class="headerPoke">
@@ -21,7 +28,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             </div>
             <div class="photoSection">
                 <button class="previous"></button>
-                <img src="imgs/bulbasauro.svg" alt="" class="photoIndividual">
+                <img src="${poke.sprites.other.dream_world.front_default}" alt="" class="photoIndividual">
                 <button class="next"></button>
             </div>
             <div class="informations">
@@ -84,47 +91,45 @@ window.addEventListener('DOMContentLoaded', (e) => {
                     <div class="powers">
                         <ul class="state">
                             <li class="power">0${poke.stats[0].base_stat}</li>
-                            <li class="bar ${poke.types[0].type.name}" style="width: ${poke.stats[0].base_stat}%;"></li>
+                            <li class="bar ${poke.types[0].type.name}C" style="width: ${poke.stats[0].base_stat}%;"></li>
                         </ul>
                         <ul class="state">
                         <li class="power">0${poke.stats[1].base_stat}</li>
-                        <li class="bar ${poke.types[0].type.name}" style="width: ${poke.stats[1].base_stat}%;"></li>
+                        <li class="bar ${poke.types[0].type.name}C" style="width: ${poke.stats[1].base_stat}%;"></li>
                         </ul>
                         <ul class="state">
                         <li class="power">0${poke.stats[2].base_stat}</li>
-                        <li class="bar ${poke.types[0].type.name}" style="width: ${poke.stats[2].base_stat}%;"></li>
+                        <li class="bar ${poke.types[0].type.name}C" style="width: ${poke.stats[2].base_stat}%;"></li>
                         </ul>
                         <ul class="state">
                         <li class="power">0${poke.stats[3].base_stat}</li>
-                        <li class="bar ${poke.types[0].type.name}" style="width: ${poke.stats[3].base_stat}%;"></li>
+                        <li class="bar ${poke.types[0].type.name}C" style="width: ${poke.stats[3].base_stat}%;"></li>
                         </ul>
                         <ul class="state">
                         <li class="power">0${poke.stats[4].base_stat}</li>
-                        <li class="bar ${poke.types[0].type.name}" style="width: ${poke.stats[4].base_stat}%;"></li>
+                        <li class="bar ${poke.types[0].type.name}C" style="width: ${poke.stats[4].base_stat}%;"></li>
                         </ul>
                         <ul class="state">
                         <li class="power">0${poke.stats[5].base_stat}</li>
-                        <li class="bar ${poke.types[0].type.name}" style="width: ${poke.stats[5].base_stat}%;"></li>
+                        <li class="bar ${poke.types[0].type.name}C" style="width: ${poke.stats[5].base_stat}%;"></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         `
+        pokemonList.style.filter = 'blur(2px)'
+        content.style.transform = 'translate(-50%, -70%)'
+        content.style.opacity = '1'
+
         content.innerHTML += htmlNew  
-        individual = document.querySelector('.pokemonIndividual')
-        
-        back = document.querySelector('.back');
-        back.addEventListener('click', escondeInformacao);
-    }
-
-    function escondeInformacao() {
-        if(individual) {
-        individual.style.display = 'none'
-        individual.style.transform = 'translateY(100%)'
-        individual.style.opacity = '0'
-        back.removeEventListener('click', escondeInformacao)
+        function escondeInformacao() {
+            let pokeI = document.querySelector('.pokemonIndividual')
+            let back = document.querySelector('.back')
+            back.addEventListener('click', () => {
+                content.removeChild(pokeI)
+                pokemonList.style.filter = 'blur(0px)'
+            })
         }
+        escondeInformacao()
     }
-
-})
