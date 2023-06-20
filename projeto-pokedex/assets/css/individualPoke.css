@@ -172,7 +172,6 @@ li {
     align-items: center;
     justify-content: space-evenly;
     width: 95%;
-    padding-bottom: 1rem;
 }
 
 .dados {
@@ -354,7 +353,7 @@ li {
     }
 
     .informations h2 {
-        padding: 0rem 0rem 1rem 0rem;
+        padding: 1rem 0rem 1rem 0rem;
         margin-bottom: .5rem;
     }
 }
